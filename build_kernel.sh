@@ -76,10 +76,13 @@ if [ -d $KERNEL_OUT ]; then
 	if [ $OPT = 'y' ] || [ $OPT = 'Y' ]; then
 		build kernel;
 	else
-	        build kernel;
+		rm -rR out;
+		make clean;
+		make mrproper;
+		build defconfig && build kernel;
 	fi
 else
-	        build kernel;
+	build defconfig && build kernel;
 fi
 
 if [ -e $IMAGE ]; then
