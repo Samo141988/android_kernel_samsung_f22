@@ -73,12 +73,10 @@ if [ -d $KERNEL_OUT ]; then
 	pr_warn "An out/ folder detected, Do you wants dirty builds? (y/N)"
 	read -p "" OPT;
 	
-	if [ $OPT = 'y' ] || [ $OPT = 'Y' ]; then
+	if [ $OPT = 'n' ] || [ $OPT = 'Y' ]; then
 		build kernel;
 	else
-		rm -rR out;
-		make clean;
-		make mrproper;
+		
 		build defconfig && build kernel;
 	fi
 else
